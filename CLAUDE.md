@@ -64,7 +64,7 @@ src/
 public/
   logo/                  ← deglem-glyph-dark.png (on light bg), deglem-glyph-light.png (on dark bg)
   screenshots/           ← dashboard.png, camera.png, progress.png — PLACEHOLDERS, swap with real (same names)
-  badges/                ← app-store.svg, google-play.svg — PLACEHOLDERS, swap with official badges
+  badges/                ← app-store.svg, google-play.svg — stylized (Apple/Play glyph + label); swap official artwork before launch
   og-image.png           ← PLACEHOLDER social preview
   favicon.png            ← copied from the app
   robots.txt
