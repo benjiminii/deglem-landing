@@ -1,0 +1,21 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+import FeatureCard from './FeatureCard.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const features = [
+  { icon: '📷', title: t('features.snap.title'), desc: t('features.snap.desc') },
+  { icon: '✏️', title: t('features.edit.title'), desc: t('features.edit.desc') },
+  { icon: '📈', title: t('features.track.title'), desc: t('features.track.desc') },
+];
+---
+
+<section class="mx-auto max-w-5xl px-5 py-16">
+  <h2 class="text-center text-3xl font-bold text-charcoal">{t('features.heading')}</h2>
+  <div class="mt-10 grid gap-5 sm:grid-cols-3">
+    {features.map((f) => <FeatureCard icon={f.icon} title={f.title} desc={f.desc} />)}
+  </div>
+</section>
