@@ -1,0 +1,17 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+import PhoneMockup from './PhoneMockup.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="mx-auto max-w-5xl px-5 py-16">
+  <h2 class="text-center text-3xl font-bold text-charcoal">{t('gallery.heading')}</h2>
+  <div class="mt-12 flex items-end justify-center gap-4 sm:gap-6">
+    <PhoneMockup screenshot="/screenshots/camera.png" alt={t('gallery.camera')} class="hidden w-40 sm:block" rotate={-6} />
+    <PhoneMockup screenshot="/screenshots/dashboard.png" alt={t('gallery.dashboard')} class="w-48 sm:w-52" />
+    <PhoneMockup screenshot="/screenshots/progress.png" alt={t('gallery.progress')} class="hidden w-40 sm:block" rotate={6} />
+  </div>
+</section>
