@@ -1,43 +1,21 @@
-# Astro Starter Kit: Minimal
+# Deglem Landing
 
-```sh
-npm create astro@latest -- --template minimal
+Static Astro landing page for the Deglem app. Bilingual (EN/MN), Tailwind v4, deployed on Vercel. Package manager: pnpm.
+
+## Develop
+```bash
+pnpm install
+pnpm dev      # http://localhost:4321
+pnpm build    # static output to dist/
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Swap-in checklist before launch
+- Replace `public/screenshots/{dashboard,camera,progress}.png` with real app screenshots (same names).
+- Replace `public/badges/{app-store,google-play}.svg` with official store badges.
+- Set `APP_STORE_URL` and `PLAY_STORE_URL` in `src/config.ts`.
+- Replace `privacy.body` in `src/i18n/{en,mn}.json` with the real policy.
+- Update `site` in `astro.config.mjs` and the Sitemap URL in `public/robots.txt` to the final domain.
+- Replace `public/og-image.png`.
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## i18n
+Copy lives in `src/i18n/en.json` + `mn.json` (identical keys).

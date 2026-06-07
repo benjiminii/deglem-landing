@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://deglem.com/sitemap-index.xml
