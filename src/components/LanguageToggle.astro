@@ -1,0 +1,17 @@
+---
+import { localizedPath, type Lang } from '../i18n/utils';
+
+interface Props { lang: Lang; path: string }
+const { lang, path } = Astro.props;
+const enHref = localizedPath(path, 'en');
+const mnHref = localizedPath(path, 'mn');
+const base = 'px-2 py-1 text-sm rounded transition-opacity hover:opacity-80';
+const active = 'font-medium text-charcoal';
+const inactive = 'text-muted';
+---
+
+<div class="flex items-center gap-1 text-sm">
+  <a href={enHref} class={`${base} ${lang === 'en' ? active : inactive}`}>EN</a>
+  <span class="text-cream-border">/</span>
+  <a href={mnHref} class={`${base} ${lang === 'mn' ? active : inactive}`}>MN</a>
+</div>
