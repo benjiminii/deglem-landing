@@ -1,0 +1,53 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+import Reveal from './Reveal.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const rows = [1, 2, 3, 4, 5].map((n) => ({
+  label: t(`why.row${n}.label`),
+  deglem: t(`why.row${n}.deglem`),
+  other: t(`why.row${n}.other`),
+}));
+---
+
+<section class="bg-cream-border/30 py-16 sm:py-20">
+  <div class="mx-auto max-w-4xl px-5">
+    <Reveal class="text-center">
+      <h2 class="text-3xl font-bold text-charcoal sm:text-4xl">{t('why.heading')}</h2>
+      <p class="mx-auto mt-3 max-w-xl text-muted">{t('why.sub')}</p>
+    </Reveal>
+
+    <Reveal class="mt-10 overflow-hidden rounded-2xl border border-cream-border bg-cream" delay={100}>
+      <!-- Header row -->
+      <div class="grid grid-cols-3 border-b border-cream-border bg-cream-border/40 text-sm font-semibold sm:text-base">
+        <div class="p-4"></div>
+        <div class="flex items-center justify-center gap-2 p-4 text-flame">
+          <img src="/logo/deglem-glyph-dark.png" alt="" width="20" height="20" class="h-5 w-5" />
+          {t('why.col.deglem')}
+        </div>
+        <div class="p-4 text-center text-muted">{t('why.col.other')}</div>
+      </div>
+
+      {rows.map((r, i) => (
+        <div class={`grid grid-cols-3 items-center text-sm sm:text-base ${i < rows.length - 1 ? 'border-b border-cream-border' : ''}`}>
+          <div class="p-4 font-medium text-charcoal">{r.label}</div>
+          <div class="flex items-center justify-center gap-2 p-4 text-center font-medium text-charcoal">
+            <svg class="h-4 w-4 shrink-0 text-flame" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 1 1 1.4-1.4l3.3 3.3 6.8-6.8a1 1 0 0 1 1.4 0Z" clip-rule="evenodd" />
+            </svg>
+            <span>{r.deglem}</span>
+          </div>
+          <div class="flex items-center justify-center gap-2 p-4 text-center text-muted">
+            <svg class="h-4 w-4 shrink-0 text-muted/60" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10 8.6 6.4 5 5 6.4 8.6 10 5 13.6 6.4 15 10 11.4 13.6 15 15 13.6 11.4 10 15 6.4 13.6 5 10 8.6Z" clip-rule="evenodd" />
+            </svg>
+            <span>{r.other}</span>
+          </div>
+        </div>
+      ))}
+    </Reveal>
+  </div>
+</section>

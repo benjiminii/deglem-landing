@@ -1,0 +1,58 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+import Reveal from './Reveal.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// TODO(pre-launch): Replace all placeholder stats and testimonials below with
+// real data before the app goes live. These numbers and quotes are fabricated.
+const stats = [
+  { count: 50000, suffix: '+', label: t('social.stat1.label') },
+  { value: '4.8★', label: t('social.stat2.label') },
+  { value: '12s', label: t('social.stat3.label') },
+];
+
+// TODO(pre-launch): placeholder testimonials — swap for real, attributed quotes.
+const testimonials = [
+  { quote: "I finally log every meal. Snapping a photo takes no willpower.", name: 'Placeholder Reviewer', meta: 'Early access' },
+  { quote: "The macro breakdown is shockingly close to what I'd calculate by hand.", name: 'Placeholder Reviewer', meta: 'Early access' },
+  { quote: "Gave up on calorie apps years ago. This one actually stuck.", name: 'Placeholder Reviewer', meta: 'Early access' },
+];
+---
+
+<section class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+  <Reveal class="text-center">
+    <h2 class="text-3xl font-bold text-charcoal sm:text-4xl">{t('social.heading')}</h2>
+    <p class="mx-auto mt-3 max-w-xl text-muted">{t('social.sub')}</p>
+  </Reveal>
+
+  <!-- Stats band -->
+  <Reveal class="mt-10 grid grid-cols-3 divide-x divide-cream-border rounded-2xl border border-cream-border bg-cream" delay={100}>
+    {stats.map((s) => (
+      <div class="px-3 py-6 text-center sm:py-8">
+        <div class="text-3xl font-bold text-flame sm:text-4xl">
+          {s.count
+            ? <><span data-count={s.count} aria-label={String(s.count)}>0</span>{s.suffix}</>
+            : s.value}
+        </div>
+        <p class="mt-1 text-xs text-muted sm:text-sm">{s.label}</p>
+      </div>
+    ))}
+  </Reveal>
+
+  <!-- Testimonials -->
+  <div class="mt-6 grid gap-5 sm:grid-cols-3">
+    {testimonials.map((tm, i) => (
+      <Reveal class="flex flex-col rounded-2xl border border-cream-border bg-cream p-6" delay={150 + i * 120}>
+        <div class="text-flame" aria-hidden="true">★★★★★</div>
+        <p class="mt-3 flex-1 text-charcoal">“{tm.quote}”</p>
+        <div class="mt-4 text-sm">
+          <span class="font-semibold text-charcoal">{tm.name}</span>
+          <span class="text-muted"> · {tm.meta}</span>
+        </div>
+      </Reveal>
+    ))}
+  </div>
+</section>

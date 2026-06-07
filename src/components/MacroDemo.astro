@@ -1,0 +1,64 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+import Reveal from './Reveal.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Demo numbers for the showcase meal. `w` is the bar fill width (visual only).
+const macros = [
+  { label: t('demo.protein'), grams: 32, w: '64%', color: 'bg-flame' },
+  { label: t('demo.carbs'), grams: 45, w: '88%', color: 'bg-charcoal' },
+  { label: t('demo.fat'), grams: 18, w: '38%', color: 'bg-muted' },
+];
+---
+
+<section class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+  <Reveal class="mx-auto max-w-2xl text-center">
+    <h2 class="text-3xl font-bold text-charcoal sm:text-4xl">{t('demo.heading')}</h2>
+    <p class="mx-auto mt-3 max-w-xl text-muted">{t('demo.sub')}</p>
+  </Reveal>
+
+  <Reveal class="mt-12 grid items-stretch gap-6 rounded-3xl border border-cream-border bg-white/40 p-4 sm:grid-cols-2 sm:p-6" delay={100}>
+    <!-- The meal photo. -->
+    <div class="overflow-hidden rounded-2xl bg-charcoal">
+      <img
+        src="/screenshots/camera.png"
+        alt="Meal being analyzed by Deglem"
+        class="h-full w-full object-cover"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- The analysis result. -->
+    <div class="flex flex-col justify-center gap-6 px-2 py-4 sm:px-6">
+      <div>
+        <div class="flex items-baseline gap-2">
+          <span
+            class="text-5xl font-bold text-flame sm:text-6xl"
+            data-count="520"
+            aria-label="520">0</span>
+          <span class="text-lg font-medium text-muted">kcal</span>
+        </div>
+        <p class="mt-1 text-sm font-medium uppercase tracking-wide text-muted">{t('demo.calories')}</p>
+      </div>
+
+      <div class="space-y-4">
+        {macros.map((m) => (
+          <div>
+            <div class="flex items-center justify-between text-sm font-medium text-charcoal">
+              <span>{m.label}</span>
+              <span class="text-muted">{m.grams}g</span>
+            </div>
+            <div class="mt-1.5 h-2.5 overflow-hidden rounded-full bg-cream-border/60">
+              <div class={`macro-bar h-full rounded-full ${m.color}`} style={`--bar-w:${m.w}`}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-sm text-muted">{t('demo.caption')}</p>
+    </div>
+  </Reveal>
+</section>

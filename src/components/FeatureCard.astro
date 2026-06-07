@@ -3,8 +3,8 @@ interface Props { icon: string; title: string; desc: string }
 const { icon, title, desc } = Astro.props;
 ---
 
-<div class="rounded-xl border border-cream-border bg-cream p-6 text-left">
-  <div class="text-3xl" aria-hidden="true">{icon}</div>
+<div class="group rounded-xl border border-cream-border bg-cream p-6 text-left transition duration-300 hover:-translate-y-1 hover:border-flame/50 hover:shadow-lg">
+  <div class="text-3xl transition-transform duration-300 group-hover:scale-110" aria-hidden="true">{icon}</div>
   <h3 class="mt-4 text-lg font-semibold text-charcoal">{title}</h3>
   <p class="mt-2 text-sm text-muted">{desc}</p>
 </div>

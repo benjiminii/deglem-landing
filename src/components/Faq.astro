@@ -1,0 +1,35 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+import Reveal from './Reveal.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const items = [1, 2, 3, 4].map((n) => ({ q: t(`faq.q${n}`), a: t(`faq.a${n}`) }));
+---
+
+<section class="bg-cream-border/30 py-16 sm:py-20">
+  <div class="mx-auto max-w-2xl px-5">
+    <Reveal class="text-center">
+      <h2 class="text-3xl font-bold text-charcoal sm:text-4xl">{t('faq.heading')}</h2>
+    </Reveal>
+
+    <Reveal class="mt-8 divide-y divide-cream-border rounded-2xl border border-cream-border bg-cream" delay={100}>
+      {items.map((item) => (
+        <details class="group px-5">
+          <summary class="flex cursor-pointer list-none items-center justify-between py-4 font-medium text-charcoal outline-none focus-visible:ring-2 focus-visible:ring-flame">
+            {item.q}
+            <svg
+              class="h-5 w-5 shrink-0 text-flame transition-transform duration-300 group-open:rotate-45"
+              viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+            >
+              <path d="M11 3a1 1 0 1 0-2 0v6H3a1 1 0 1 0 0 2h6v6a1 1 0 1 0 2 0v-6h6a1 1 0 1 0 0-2h-6V3Z" />
+            </svg>
+          </summary>
+          <p class="pb-5 -mt-1 text-muted">{item.a}</p>
+        </details>
+      ))}
+    </Reveal>
+  </div>
+</section>

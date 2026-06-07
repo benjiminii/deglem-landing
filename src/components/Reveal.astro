@@ -1,0 +1,16 @@
+---
+// Wraps content in a scroll-reveal container. The IntersectionObserver in
+// Base.astro adds `.is-visible` when it enters the viewport; `delay` staggers
+// siblings. Renders as a plain element so it can drop into any layout.
+interface Props {
+  delay?: number; // ms
+  as?: string; // wrapper tag, default 'div'
+  class?: string;
+}
+const { delay = 0, as: Tag = 'div', class: className = '' } = Astro.props;
+const style = delay ? `--reveal-delay:${delay}ms` : undefined;
+---
+
+<Tag data-reveal class={className} style={style}>
+  <slot />
+</Tag>

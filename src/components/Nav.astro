@@ -11,7 +11,7 @@ const homeHref = lang === 'en' ? '/' : '/mn/';
 const downloadHref = path === '/' ? '#download' : `${homeHref}#download`;
 ---
 
-<header class="sticky top-0 z-10 border-b border-cream-border bg-cream/90 backdrop-blur">
+<header data-nav class="sticky top-0 z-10 border-b border-cream-border bg-cream/90 backdrop-blur transition-shadow">
   <nav class="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
     <a href={homeHref} class="flex items-center gap-2 transition-opacity hover:opacity-80">
       <img src="/logo/deglem-glyph-dark.png" alt="" width="28" height="28" class="h-7 w-7" />

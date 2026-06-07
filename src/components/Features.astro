@@ -14,8 +14,12 @@ const features = [
 ---
 
 <section class="mx-auto max-w-5xl px-5 py-16">
-  <h2 class="text-center text-3xl font-bold text-charcoal">{t('features.heading')}</h2>
+  <h2 data-reveal class="text-center text-3xl font-bold text-charcoal sm:text-4xl">{t('features.heading')}</h2>
   <div class="mt-10 grid gap-5 sm:grid-cols-3">
-    {features.map((f) => <FeatureCard icon={f.icon} title={f.title} desc={f.desc} />)}
+    {features.map((f, i) => (
+      <div data-reveal style={`--reveal-delay:${i * 120}ms`}>
+        <FeatureCard icon={f.icon} title={f.title} desc={f.desc} />
+      </div>
+    ))}
   </div>
 </section>

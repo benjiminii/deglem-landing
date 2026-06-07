@@ -6,17 +6,56 @@ import StoreBadges from './StoreBadges.astro';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+
+// Floating macro chips around the phone. `pos` places them; `delay` staggers
+// the pop-in; `float` staggers the idle bob so they don't move in lockstep.
+const chips = [
+  { label: '520 kcal', pos: 'left-0 top-10 sm:-left-6', delay: 700, float: 0, accent: true },
+  { label: 'Protein 32g', pos: 'right-0 top-24 sm:-right-8', delay: 850, float: 0.8 },
+  { label: 'Carbs 45g', pos: 'left-2 bottom-28 sm:-left-10', delay: 1000, float: 1.6 },
+  { label: 'Fat 18g', pos: 'right-2 bottom-12 sm:-right-6', delay: 1150, float: 2.4 },
+];
 ---
 
-<section class="mx-auto max-w-5xl px-5 py-16 text-center sm:py-24">
-  <h1 class="mx-auto max-w-2xl text-4xl font-bold leading-tight text-charcoal sm:text-5xl">
-    {t('hero.title')}
-  </h1>
-  <p class="mx-auto mt-4 max-w-xl text-lg text-muted">{t('hero.subtitle')}</p>
-
-  <div class="mt-10 flex justify-center">
-    <PhoneMockup screenshot="/screenshots/dashboard.png" alt="Deglem dashboard" class="w-56 sm:w-64" />
+<section class="relative overflow-hidden">
+  <!-- Drifting glow blobs behind the hero. -->
+  <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+    <div class="animate-glow absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-flame-soft/60 blur-3xl"></div>
+    <div class="animate-glow absolute right-1/4 top-40 h-64 w-64 rounded-full bg-flame/15 blur-3xl" style="animation-delay:-6s"></div>
   </div>
 
-  <StoreBadges class="mt-10 justify-center" />
+  <div class="mx-auto max-w-5xl px-5 py-16 text-center sm:py-24">
+    <h1
+      data-reveal
+      class="mx-auto max-w-2xl text-4xl font-bold leading-tight text-charcoal sm:text-6xl"
+    >
+      {t('hero.title')}
+    </h1>
+    <p data-reveal style="--reveal-delay:120ms" class="mx-auto mt-5 max-w-xl text-lg text-muted">
+      {t('hero.subtitle')}
+    </p>
+
+    <div data-reveal style="--reveal-delay:240ms" class="relative mx-auto mt-12 flex w-fit justify-center">
+      <PhoneMockup
+        screenshot="/screenshots/dashboard.png"
+        alt="Deglem dashboard"
+        class="animate-float w-56 sm:w-64"
+      />
+      {chips.map((c) => (
+        <span class={`animate-float absolute ${c.pos}`} style={`animation-delay:${c.float}s`} aria-hidden="true">
+          <span
+            class={`chip block rounded-full px-3 py-1.5 text-sm font-semibold shadow-lg ${c.accent ? 'bg-flame text-cream' : 'bg-cream text-charcoal border border-cream-border'}`}
+            style={`animation-delay:${c.delay}ms`}
+          >
+            {c.label}
+          </span>
+        </span>
+      ))}
+    </div>
+
+    <div data-reveal style="--reveal-delay:360ms">
+      <StoreBadges class="mt-12 justify-center" />
+      <p class="mt-5 text-sm text-muted">{t('hero.trust')}</p>
+    </div>
+  </div>
 </section>

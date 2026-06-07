@@ -39,5 +39,56 @@ const mnPath = localizedPath(path, 'mn');
   </head>
   <body>
     <slot />
+
+    <script>
+      // Scroll-reveal: add `.is-visible` when an element enters the viewport.
+      const revealIO = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (!e.isIntersecting) continue;
+            e.target.classList.add('is-visible');
+            revealIO.unobserve(e.target);
+          }
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+      );
+      document.querySelectorAll('[data-reveal]').forEach((el) => revealIO.observe(el));
+
+      // Count-up: animate `[data-count]` from 0 to its target when first seen.
+      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const countIO = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (!e.isIntersecting) continue;
+            const el = e.target as HTMLElement;
+            countIO.unobserve(el);
+            const target = Number(el.dataset.count) || 0;
+            if (reduceMotion) {
+              el.textContent = target.toLocaleString();
+              continue;
+            }
+            const duration = 1400;
+            const start = performance.now();
+            const tick = (now: number) => {
+              const p = Math.min((now - start) / duration, 1);
+              const eased = 1 - Math.pow(1 - p, 3);
+              el.textContent = Math.round(target * eased).toLocaleString();
+              if (p < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+          }
+        },
+        { threshold: 0.5 }
+      );
+      document.querySelectorAll('[data-count]').forEach((el) => countIO.observe(el));
+
+      // Nav shadow once the page is scrolled.
+      const header = document.querySelector('header[data-nav]');
+      if (header) {
+        const onScroll = () => header.classList.toggle('shadow-sm', window.scrollY > 8);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+      }
+    </script>
   </body>
 </html>

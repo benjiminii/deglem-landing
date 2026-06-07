@@ -14,11 +14,11 @@ const steps = [
 
 <section class="bg-cream-border/30 py-16">
   <div class="mx-auto max-w-5xl px-5">
-    <h2 class="text-center text-3xl font-bold text-charcoal">{t('how.heading')}</h2>
+    <h2 data-reveal class="text-center text-3xl font-bold text-charcoal sm:text-4xl">{t('how.heading')}</h2>
     <div class="mt-10 grid gap-8 sm:grid-cols-3">
-      {steps.map((s) => (
-        <div class="text-center">
-          <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-charcoal text-lg font-bold text-cream">
+      {steps.map((s, i) => (
+        <div data-reveal style={`--reveal-delay:${i * 140}ms`} class="text-center">
+          <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-charcoal text-lg font-bold text-cream ring-4 ring-flame/20">
             {s.n}
           </div>
           <h3 class="mt-4 text-lg font-semibold text-charcoal">{s.title}</h3>
