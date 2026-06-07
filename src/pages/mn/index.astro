@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Hero from '../../components/Hero.astro';
+import Features from '../../components/Features.astro';
+import HowItWorks from '../../components/HowItWorks.astro';
+import ScreenshotGallery from '../../components/ScreenshotGallery.astro';
+import DownloadCTA from '../../components/DownloadCTA.astro';
+import Footer from '../../components/Footer.astro';
+
+const lang = 'mn';
+const path = '/';
+---
+
+<Base lang={lang} path={path}>
+  <Nav lang={lang} path={path} />
+  <main>
+    <Hero lang={lang} />
+    <Features lang={lang} />
+    <HowItWorks lang={lang} />
+    <ScreenshotGallery lang={lang} />
+    <DownloadCTA lang={lang} />
+  </main>
+  <Footer lang={lang} path={path} />
+</Base>
