@@ -1,0 +1,19 @@
+---
+interface Props {
+  screenshot: string; // path under /public, e.g. '/screenshots/dashboard.png'
+  alt: string;
+  class?: string;
+  rotate?: number; // degrees, optional for gallery
+}
+const { screenshot, alt, class: className = '', rotate = 0 } = Astro.props;
+const style = rotate ? `transform: rotate(${rotate}deg)` : undefined;
+---
+
+<div
+  class={`rounded-[2rem] bg-charcoal p-2 shadow-2xl ${className}`}
+  style={style}
+>
+  <div class="overflow-hidden rounded-[1.5rem] bg-cream">
+    <img src={screenshot} alt={alt} class="block h-full w-full object-cover" loading="lazy" />
+  </div>
+</div>
