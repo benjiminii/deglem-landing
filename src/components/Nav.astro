@@ -5,15 +5,22 @@ import LanguageToggle from './LanguageToggle.astro';
 interface Props { lang: Lang; path: string }
 const { lang, path } = Astro.props;
 const t = useTranslations(lang);
+
+const homeHref = lang === 'en' ? '/' : '/mn/';
+// On the home page, scroll to the CTA; on other pages, jump to home then the CTA.
+const downloadHref = path === '/' ? '#download' : `${homeHref}#download`;
 ---
 
 <header class="sticky top-0 z-10 border-b border-cream-border bg-cream/90 backdrop-blur">
   <nav class="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
-    <a href={lang === 'en' ? '/' : '/mn/'} class="text-xl font-bold text-charcoal">Deglem</a>
+    <a href={homeHref} class="flex items-center gap-2 transition-opacity hover:opacity-80">
+      <img src="/logo/deglem-glyph-dark.png" alt="" width="28" height="28" class="h-7 w-7" />
+      <span class="text-xl font-bold text-charcoal">Deglem</span>
+    </a>
     <div class="flex items-center gap-4">
       <LanguageToggle lang={lang} path={path} />
       <a
-        href="#download"
+        href={downloadHref}
         class="rounded-lg bg-charcoal px-4 py-2 text-sm font-medium text-cream transition-opacity hover:opacity-80"
       >
         {t('nav.download')}

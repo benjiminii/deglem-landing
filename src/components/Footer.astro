@@ -13,7 +13,10 @@ const year = new Date().getFullYear();
 <footer class="border-t border-cream-border bg-cream py-10">
   <div class="mx-auto flex max-w-5xl flex-col items-center gap-4 px-5 text-sm text-muted sm:flex-row sm:justify-between">
     <div class="flex items-center gap-4">
-      <span class="font-semibold text-charcoal">{SITE_NAME}</span>
+      <span class="flex items-center gap-2 font-semibold text-charcoal">
+        <img src="/logo/deglem-glyph-dark.png" alt="" width="20" height="20" class="h-5 w-5" />
+        {SITE_NAME}
+      </span>
       <a href={privacyHref} class="transition-opacity hover:opacity-80">{t('footer.privacy')}</a>
       <a href={`mailto:${CONTACT_EMAIL}`} class="transition-opacity hover:opacity-80">{t('footer.contact')}</a>
     </div>

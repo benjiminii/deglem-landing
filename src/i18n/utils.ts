@@ -14,9 +14,11 @@ export function useTranslations(lang: Lang) {
   };
 }
 
-/** Map a path between locales. '/' <-> '/mn/', '/privacy' <-> '/mn/privacy'. */
+/** Map a path between locales with consistent trailing slashes.
+ *  '/' <-> '/mn/', '/privacy' -> '/privacy/' <-> '/mn/privacy/'. */
 export function localizedPath(path: string, lang: Lang): string {
-  const clean = path.replace(/^\/mn(\/|$)/, '/');
+  let clean = path.replace(/^\/mn(\/|$)/, '/');
+  if (!clean.endsWith('/')) clean += '/';
   if (lang === 'en') return clean;
   return clean === '/' ? '/mn/' : `/mn${clean}`;
 }
