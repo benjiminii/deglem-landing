@@ -1,0 +1,15 @@
+---
+import { APP_STORE_URL, PLAY_STORE_URL } from '../config';
+
+interface Props { class?: string }
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`flex flex-wrap items-center gap-3 ${className}`}>
+  <a href={APP_STORE_URL} class="transition-opacity hover:opacity-80" aria-label="Download on the App Store">
+    <img src="/badges/app-store.svg" alt="Download on the App Store" width="160" height="48" />
+  </a>
+  <a href={PLAY_STORE_URL} class="transition-opacity hover:opacity-80" aria-label="Get it on Google Play">
+    <img src="/badges/google-play.svg" alt="Get it on Google Play" width="160" height="48" />
+  </a>
+</div>
