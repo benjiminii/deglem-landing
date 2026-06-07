@@ -1,0 +1,30 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const steps = [
+  { n: '1', title: t('how.step1.title'), desc: t('how.step1.desc') },
+  { n: '2', title: t('how.step2.title'), desc: t('how.step2.desc') },
+  { n: '3', title: t('how.step3.title'), desc: t('how.step3.desc') },
+];
+---
+
+<section class="bg-cream-border/30 py-16">
+  <div class="mx-auto max-w-5xl px-5">
+    <h2 class="text-center text-3xl font-bold text-charcoal">{t('how.heading')}</h2>
+    <div class="mt-10 grid gap-8 sm:grid-cols-3">
+      {steps.map((s) => (
+        <div class="text-center">
+          <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-charcoal text-lg font-bold text-cream">
+            {s.n}
+          </div>
+          <h3 class="mt-4 text-lg font-semibold text-charcoal">{s.title}</h3>
+          <p class="mt-2 text-sm text-muted">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
