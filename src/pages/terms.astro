@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { useTranslations } from '../i18n/utils';
+
+const lang = 'en';
+const path = '/terms';
+const t = useTranslations(lang);
+const sections = ['s1', 's2', 's3', 's4', 's5'] as const;
+---
+
+<Base lang={lang} path={path} title={`${t('terms.title')} — Deglem`}>
+  <Nav lang={lang} path={path} />
+  <main class="mx-auto max-w-3xl px-5 py-16">
+    <h1 class="text-3xl font-bold text-charcoal">{t('terms.title')}</h1>
+    <p class="mt-2 text-sm text-muted">{t('terms.updated')}</p>
+    <p class="mt-6 leading-relaxed text-muted">{t('terms.intro')}</p>
+    <div class="mt-8 space-y-8">
+      {sections.map((s) => (
+        <section>
+          <h2 class="text-lg font-semibold text-charcoal">{t(`terms.${s}.title`)}</h2>
+          <p class="mt-2 leading-relaxed text-muted">{t(`terms.${s}.body`)}</p>
+        </section>
+      ))}
+    </div>
+  </main>
+  <Footer lang={lang} path={path} />
+</Base>

@@ -1,15 +1,19 @@
 ---
 import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
-import { CONTACT_EMAIL, SITE_NAME } from '../config';
+import { SITE_NAME } from '../config';
 import LanguageToggle from './LanguageToggle.astro';
+import DownloadCTA from './DownloadCTA.astro';
 
 interface Props { lang: Lang; path: string }
 const { lang, path } = Astro.props;
 const t = useTranslations(lang);
 const privacyHref = localizedPath('/privacy', lang);
+const termsHref = localizedPath('/terms', lang);
+const contactHref = localizedPath('/contact', lang);
 const year = new Date().getFullYear();
 ---
 
+<DownloadCTA lang={lang} />
 <footer class="border-t border-cream-border bg-cream py-10">
   <div class="mx-auto flex max-w-5xl flex-col items-center gap-4 px-5 text-sm text-muted sm:flex-row sm:justify-between">
     <div class="flex items-center gap-4">
@@ -18,7 +22,8 @@ const year = new Date().getFullYear();
         {SITE_NAME}
       </span>
       <a href={privacyHref} class="transition-opacity hover:opacity-80">{t('footer.privacy')}</a>
-      <a href={`mailto:${CONTACT_EMAIL}`} class="transition-opacity hover:opacity-80">{t('footer.contact')}</a>
+      <a href={termsHref} class="transition-opacity hover:opacity-80">{t('footer.terms')}</a>
+      <a href={contactHref} class="transition-opacity hover:opacity-80">{t('footer.contact')}</a>
     </div>
     <div class="flex items-center gap-4">
       <LanguageToggle lang={lang} path={path} />
