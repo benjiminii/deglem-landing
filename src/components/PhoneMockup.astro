@@ -10,10 +10,13 @@ const style = rotate ? `transform: rotate(${rotate}deg)` : undefined;
 ---
 
 <div
-  class={`rounded-[2rem] bg-charcoal p-2 shadow-2xl ${className}`}
+  class={`rounded-[2.6rem] bg-charcoal p-2 shadow-2xl ring-1 ring-black/20 ${className}`}
   style={style}
 >
-  <div class="aspect-[1/2] overflow-hidden rounded-[1.5rem] bg-cream">
-    <img src={screenshot} alt={alt} width="360" height="720" class="block h-full w-full object-cover" loading="lazy" />
+  <!-- aspect matches the native screenshot ratio (1206x2622) so nothing is cropped -->
+  <div class="relative aspect-[1206/2622] overflow-hidden rounded-[2.1rem] bg-cream">
+    <img src={screenshot} alt={alt} width="603" height="1311" class="block h-full w-full" loading="lazy" />
+    <!-- Dynamic Island -->
+    <div class="absolute left-1/2 top-[1.7%] h-[2.9%] w-[33%] -translate-x-1/2 rounded-full bg-charcoal" aria-hidden="true"></div>
   </div>
 </div>

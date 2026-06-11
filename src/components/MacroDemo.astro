@@ -1,6 +1,7 @@
 ---
 import { useTranslations, type Lang } from '../i18n/utils';
 import Reveal from './Reveal.astro';
+import PhoneMockup from './PhoneMockup.astro';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -8,9 +9,9 @@ const t = useTranslations(lang);
 
 // Demo numbers for the showcase meal. `w` is the bar fill width (visual only).
 const macros = [
-  { label: t('demo.protein'), grams: 32, w: '64%', color: 'bg-flame' },
-  { label: t('demo.carbs'), grams: 45, w: '88%', color: 'bg-charcoal' },
-  { label: t('demo.fat'), grams: 18, w: '38%', color: 'bg-muted' },
+  { label: t('demo.protein'), grams: 26.5, w: '32%', color: 'bg-flame' },
+  { label: t('demo.carbs'), grams: 78, w: '90%', color: 'bg-charcoal' },
+  { label: t('demo.fat'), grams: 28.5, w: '34%', color: 'bg-muted' },
 ];
 ---
 
@@ -21,13 +22,12 @@ const macros = [
   </Reveal>
 
   <Reveal class="mt-12 grid items-stretch gap-6 rounded-3xl border border-cream-border bg-cream p-4 sm:grid-cols-2 sm:p-6" delay={100}>
-    <!-- The meal photo. -->
-    <div class="overflow-hidden rounded-2xl bg-charcoal">
-      <img
-        src="/screenshots/camera.png"
+    <!-- The analyzed meal, in the app. -->
+    <div class="flex items-center justify-center py-4">
+      <PhoneMockup
+        screenshot="/screenshots/macro.png"
         alt="Meal being analyzed by Deglem"
-        class="h-full w-full object-cover"
-        loading="lazy"
+        class="w-56 sm:w-64"
       />
     </div>
 
@@ -37,8 +37,8 @@ const macros = [
         <div class="flex items-baseline gap-2">
           <span
             class="text-5xl font-bold text-flame sm:text-6xl"
-            data-count="520"
-            aria-label="520">0</span>
+            data-count="680"
+            aria-label="680">0</span>
           <span class="text-lg font-medium text-muted">kcal</span>
         </div>
         <p class="mt-1 text-sm font-medium uppercase tracking-wide text-muted">{t('demo.calories')}</p>
