@@ -42,7 +42,7 @@ function png(width, height, [r, g, b]) {
   return Buffer.concat([sig, chunk('IHDR', ihdr), chunk('IDAT', idat), chunk('IEND', Buffer.alloc(0))]);
 }
 mkdirSync('public/screenshots', { recursive: true });
-const files = { dashboard: [233, 229, 219], camera: [226, 221, 209], progress: [233, 229, 219] };
+const files = { dashboard: [241, 241, 239], camera: [233, 233, 230], progress: [241, 241, 239] };
 for (const [name, color] of Object.entries(files)) {
   writeFileSync(`public/screenshots/${name}.png`, png(360, 720, color));
   console.log('wrote public/screenshots/' + name + '.png');

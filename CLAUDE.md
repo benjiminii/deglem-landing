@@ -26,9 +26,9 @@ This is a separate project from the app — it shares no code, only the brand (p
 
 See `DESIGN.md` for the full system. Key rules:
 
-- **Background**: `bg-cream` (`#faf9f6`) — never `bg-white`
+- **Background**: `bg-cream` (`#fefefe`) — never raw `bg-white`, always the token
 - **Text**: `text-charcoal` (`#1c1c1c`) primary, `text-muted` (`#5f5f5d`) secondary
-- **Borders not shadows** on cards: `border border-cream-border` (`#e7e2d6`), `rounded-xl`
+- **Borders not shadows** on cards: `border border-cream-border` (`#e9e9e6`), `rounded-xl`
 - **Dark sections** (CTA): `bg-charcoal` with `text-cream` / `text-cream/70` for secondary (never `text-muted` on charcoal — fails contrast)
 - **Interactions**: `transition-opacity hover:opacity-80` on every link/button
 - **Font**: Roboto everywhere (`font-sans` token maps to it)

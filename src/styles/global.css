@@ -5,10 +5,10 @@
 @import '@fontsource/roboto/700.css';
 
 @theme {
-  --color-cream: #faf9f6;
+  --color-cream: #fefefe;
   --color-charcoal: #1c1c1c;
   --color-muted: #5f5f5d;
-  --color-cream-border: #e7e2d6;
+  --color-cream-border: #e9e9e6;
   --color-flame: #ff6b4a;
   --color-flame-soft: #ffd9cd;
   --font-sans: 'Roboto', system-ui, sans-serif;
@@ -19,6 +19,17 @@ html {
 }
 body {
   @apply bg-cream text-charcoal font-sans antialiased;
+}
+::selection {
+  background: var(--color-flame-soft);
+  color: var(--color-charcoal);
+}
+
+/* Faint dot grid that gives near-white sections some texture. */
+.dot-grid {
+  background-image: radial-gradient(circle, var(--color-cream-border) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, black 30%, transparent 75%);
 }
 
 /* ---- Scroll reveal -------------------------------------------------- */

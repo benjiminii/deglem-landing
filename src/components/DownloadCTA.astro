@@ -7,9 +7,13 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<section id="download" class="bg-charcoal py-20">
-  <div class="mx-auto max-w-3xl px-5 text-center">
-    <h2 class="text-3xl font-bold text-cream">{t('cta.heading')}</h2>
+<section id="download" class="relative overflow-hidden bg-charcoal py-20 sm:py-24">
+  <!-- Soft flame glow so the dark anchor isn't a flat slab. -->
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div class="animate-glow absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-flame/10 blur-3xl"></div>
+  </div>
+  <div class="relative mx-auto max-w-3xl px-5 text-center">
+    <h2 class="text-balance text-3xl font-bold tracking-tight text-cream sm:text-4xl">{t('cta.heading')}</h2>
     <p class="mt-3 text-cream/70">{t('cta.subtitle')}</p>
     <StoreBadges class="mt-8 justify-center" />
   </div>

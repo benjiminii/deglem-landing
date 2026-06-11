@@ -1,18 +1,18 @@
 # Design System — Deglem Landing (Astro / Tailwind v4)
 
-The marketing site shares the Deglem app's brand: warm cream background, near-black charcoal text, the D-spoon glyph, and Roboto. All styling uses Tailwind v4 utility classes. Tokens are defined CSS-first in `src/styles/global.css` under `@theme` — there is **no** `tailwind.config` file.
+The marketing site shares the Deglem app's brand: clean near-white background, near-black charcoal text, the D-spoon glyph, and Roboto. All styling uses Tailwind v4 utility classes. Tokens are defined CSS-first in `src/styles/global.css` under `@theme` — there is **no** `tailwind.config` file.
 
 ---
 
 ## 1. Visual Theme & Atmosphere
 
-Warm, approachable, analog — like a well-crafted food journal, not a sterile health tracker. The cream background separates Deglem from clinical white SaaS pages. Charcoal-on-cream gives soft, readable contrast; a single charcoal section (the download CTA) provides one strong dark anchor.
+Clean, approachable, focused — like a well-crafted food journal, not a sterile health tracker. The near-white background keeps the page airy; a faint dot grid and soft flame glows add texture so it never reads flat. Charcoal-on-near-white gives crisp, readable contrast; a single charcoal section (the download CTA) provides one strong dark anchor.
 
 **Key characteristics:**
-- Warm parchment background (`#faf9f6`) — never pure white
+- Near-white background (`#fefefe`) via the `cream` token — always through the token, never raw `bg-white`
 - **Roboto** as the only typeface (weights 400 / 500 / 700)
 - Secondary text via the dedicated `muted` token (not opacity guesses)
-- Borders over shadows for cards (`#e7e2d6`)
+- Borders over shadows for cards (`#e9e9e6`)
 - One inverted section (charcoal CTA) for download emphasis
 - Phone mockups in charcoal frames carry the product imagery
 
@@ -24,10 +24,10 @@ Warm, approachable, analog — like a well-crafted food journal, not a sterile h
 
 ```css
 @theme {
-  --color-cream: #faf9f6;
+  --color-cream: #fefefe;
   --color-charcoal: #1c1c1c;
   --color-muted: #5f5f5d;
-  --color-cream-border: #e7e2d6;
+  --color-cream-border: #e9e9e6;
   --font-sans: 'Roboto', system-ui, sans-serif;
 }
 ```
@@ -38,12 +38,12 @@ Defining `--color-cream` auto-generates `bg-cream`, `text-cream`, `border-cream`
 
 | Token | Value | Class | Use |
 |-------|-------|-------|-----|
-| Cream | `#faf9f6` | `bg-cream` | Page background, card surfaces, logo/text on charcoal |
+| Cream | `#fefefe` | `bg-cream` | Page background, card surfaces, logo/text on charcoal |
 | Charcoal | `#1c1c1c` | `bg-charcoal` / `text-charcoal` | Primary text, dark buttons, CTA section, phone frames |
 | Muted | `#5f5f5d` | `text-muted` | Secondary text, captions — **only on light backgrounds** |
-| Cream Border | `#e7e2d6` | `border-cream-border` | Card borders, dividers, section tint (`bg-cream-border/30`) |
-| Cream 70% | `rgb(250 249 246 / .7)` | `text-cream/70` | Secondary text **on charcoal** (passes WCAG AA) |
-| Cream 90% | `rgb(250 249 246 / .9)` | `bg-cream/90` | Sticky nav backdrop (with `backdrop-blur`) |
+| Cream Border | `#e9e9e6` | `border-cream-border` | Card borders, dividers, section tint (`bg-cream-border/40`) |
+| Cream 70% | `rgb(254 254 254 / .7)` | `text-cream/70` | Secondary text **on charcoal** (passes WCAG AA) |
+| Cream 90% | `rgb(254 254 254 / .9)` | `bg-cream/90` | Sticky nav backdrop (with `backdrop-blur`) |
 
 **Contrast rule:** Never put `text-muted` on `bg-charcoal` (≈2.66:1, fails AA). Use `text-cream/70` for secondary text on dark.
 

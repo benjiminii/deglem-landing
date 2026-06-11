@@ -18,8 +18,9 @@ const chips = [
 ---
 
 <section class="relative overflow-hidden">
-  <!-- Drifting glow blobs behind the hero. -->
+  <!-- Dot grid + drifting glow blobs behind the hero. -->
   <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+    <div class="dot-grid absolute inset-0"></div>
     <div class="animate-glow absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-flame-soft/60 blur-3xl"></div>
     <div class="animate-glow absolute right-1/4 top-40 h-64 w-64 rounded-full bg-flame/15 blur-3xl" style="animation-delay:-6s"></div>
   </div>
@@ -27,11 +28,11 @@ const chips = [
   <div class="mx-auto max-w-5xl px-5 py-16 text-center sm:py-24">
     <h1
       data-reveal
-      class="mx-auto max-w-2xl text-4xl font-bold leading-tight text-charcoal sm:text-6xl"
+      class="mx-auto max-w-2xl text-balance text-4xl font-bold leading-tight tracking-tight text-charcoal sm:text-6xl"
     >
       {t('hero.title')}
     </h1>
-    <p data-reveal style="--reveal-delay:120ms" class="mx-auto mt-5 max-w-xl text-lg text-muted">
+    <p data-reveal style="--reveal-delay:120ms" class="mx-auto mt-5 max-w-xl text-pretty text-lg text-muted">
       {t('hero.subtitle')}
     </p>
 

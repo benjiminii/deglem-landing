@@ -13,7 +13,7 @@ const style = rotate ? `transform: rotate(${rotate}deg)` : undefined;
   class={`rounded-[2rem] bg-charcoal p-2 shadow-2xl ${className}`}
   style={style}
 >
-  <div class="overflow-hidden rounded-[1.5rem] bg-cream">
-    <img src={screenshot} alt={alt} class="block h-full w-full object-cover" loading="lazy" />
+  <div class="aspect-[1/2] overflow-hidden rounded-[1.5rem] bg-cream">
+    <img src={screenshot} alt={alt} width="360" height="720" class="block h-full w-full object-cover" loading="lazy" />
   </div>
 </div>
