@@ -7,7 +7,7 @@ import { useTranslations } from '../../i18n/utils';
 const lang = 'mn';
 const path = '/terms';
 const t = useTranslations(lang);
-const sections = ['s1', 's2', 's3', 's4', 's5'] as const;
+const sections = ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8'] as const;
 ---
 
 <Base lang={lang} path={path} title={`${t('terms.title')} — Deglem`}>
@@ -20,7 +20,11 @@ const sections = ['s1', 's2', 's3', 's4', 's5'] as const;
       {sections.map((s) => (
         <section>
           <h2 class="text-lg font-semibold text-charcoal">{t(`terms.${s}.title`)}</h2>
-          <p class="mt-2 leading-relaxed text-muted">{t(`terms.${s}.body`)}</p>
+          <div class="mt-2 space-y-3">
+            {t(`terms.${s}.body`).split('\n\n').map((paragraph) => (
+              <p class="leading-relaxed text-muted">{paragraph}</p>
+            ))}
+          </div>
         </section>
       ))}
     </div>

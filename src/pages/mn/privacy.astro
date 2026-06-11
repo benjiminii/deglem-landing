@@ -7,14 +7,26 @@ import { useTranslations } from '../../i18n/utils';
 const lang = 'mn';
 const path = '/privacy';
 const t = useTranslations(lang);
+const sections = ['s1', 's2', 's3', 's4', 's5', 's6', 's7'] as const;
 ---
 
 <Base lang={lang} path={path} title={`${t('privacy.title')} — Deglem`}>
   <Nav lang={lang} path={path} />
   <main class="mx-auto max-w-3xl px-5 py-16">
     <h1 class="text-3xl font-bold text-charcoal">{t('privacy.title')}</h1>
-    <div class="mt-6 space-y-4 leading-relaxed text-muted">
-      <p>{t('privacy.body')}</p>
+    <p class="mt-2 text-sm text-muted">{t('privacy.updated')}</p>
+    <p class="mt-6 leading-relaxed text-muted">{t('privacy.intro')}</p>
+    <div class="mt-8 space-y-8">
+      {sections.map((s) => (
+        <section>
+          <h2 class="text-lg font-semibold text-charcoal">{t(`privacy.${s}.title`)}</h2>
+          <div class="mt-2 space-y-3">
+            {t(`privacy.${s}.body`).split('\n\n').map((paragraph) => (
+              <p class="leading-relaxed text-muted">{paragraph}</p>
+            ))}
+          </div>
+        </section>
+      ))}
     </div>
   </main>
   <Footer lang={lang} path={path} />
