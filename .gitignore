@@ -27,3 +27,5 @@ pnpm-debug.log*
 .playwright-mcp
 .superpowers/
 .superpowers
+
+store-assets/source/.tmp.html

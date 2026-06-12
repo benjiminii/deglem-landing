@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "gen:store": "node store-assets/source/generate.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "playwright": "^1.60.0",
     "typescript": "^6.0.3"
   }
 }
