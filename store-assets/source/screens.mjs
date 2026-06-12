@@ -5,8 +5,8 @@ export const screens = [
     screenshot: "macro.png",
     tilt: 4,
     anchor: "right",
-    headline: 'Зураг ав.<br><span class="accent">Илчлэгээ мэд.</span>',
-    subhead: "Хоолныхоо зургийг авахад л илчлэг, макро секундын дотор гарна.",
+    headline: 'Зургийн ав<br><span class="accent">Илчлэгээ мэд</span>',
+    subhead: "Хоолныхоо зургийг нь авахад л тухайн хоолны илчлэг 5 секундийн дотор гаргана.",
   },
   {
     id: "02-macros",
@@ -14,8 +14,8 @@ export const screens = [
     screenshot: "macro.png",
     tilt: -4,
     anchor: "right",
-    headline: 'Илчлэг, макро —<br><span class="accent">агшин зуур.</span>',
-    subhead: "Уураг, нүүрс ус, өөх тосыг бүртгэхээсээ өмнө хар.",
+    headline: 'Хялбар <span class="accent">бүртгэл</span>',
+    subhead: "Бүртгэсэн хоолныхоо порц болон бусад мэдээллийг хялбар өөрчлөх боломжтой.",
   },
   {
     id: "03-dashboard",
@@ -23,7 +23,7 @@ export const screens = [
     screenshot: "dashboard.png",
     tilt: 4,
     anchor: "left",
-    headline: 'Өдрөө <span class="accent">нэг дороос</span><br>хяна.',
+    headline: 'Хялбар <span class="accent">хяналт</span>',
     subhead: "Өдрийн илчлэг, макро зорилт, хоолны бүртгэл — нэг дэлгэцэнд.",
   },
   {
@@ -32,8 +32,8 @@ export const screens = [
     screenshot: "progress.png",
     tilt: -4,
     anchor: "right",
-    headline: 'Ахиц <span class="accent">өдөр бүр</span><br>харагдана.',
-    subhead: "Жингийн хандлага, илчлэг, BMI-г хялбар ажигла.",
+    headline: 'Ахицаа <span class="accent">хянах</span>',
+    subhead: "Таны биеийн жингийн индекс болон өдрийн илчлэгийн хэрэглээг хялбар хянах боломжтой.",
   },
   {
     id: "05-profile",
@@ -41,7 +41,7 @@ export const screens = [
     screenshot: "profile.png",
     tilt: 4,
     anchor: "left",
-    headline: 'Зорилгоо <span class="accent">өөрөө</span><br>тодорхойл.',
+    headline: 'Зорилгоо <span class="accent">өөрөө</span><br>тодорхойл',
     subhead: "Зорилтот жин, өдрийн илчлэгээ уян хатан тохируул.",
   },
 ];

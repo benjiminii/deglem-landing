@@ -9,7 +9,7 @@ const ROOT = path.resolve(SRC, "..", "..");
 const TMP = path.join(SRC, ".tmp.html");
 
 const TARGETS = [
-  { store: "app-store", width: 1290, height: 2796 },
+  { store: "app-store", width: 1284, height: 2778 },
   { store: "google-play", width: 1080, height: 1920 },
 ];
 

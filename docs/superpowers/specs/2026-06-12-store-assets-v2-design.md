@@ -21,7 +21,7 @@ Filenames unchanged — drop-in replacement for the current files.
 
 | File | Size (px) |
 |---|---|
-| `store-assets/app-store/01-snap.png` … `05-profile.png` | 1290 × 2796 |
+| `store-assets/app-store/01-snap.png` … `05-profile.png` | 1284 × 2778 (6.5-inch portrait) |
 | `store-assets/google-play/01-snap.png` … `05-profile.png` | 1080 × 1920 |
 | `store-assets/google-play/feature-graphic.png` | 1024 × 500 |
 
