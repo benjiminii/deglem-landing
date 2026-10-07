@@ -6,7 +6,7 @@ This file guides Claude Code (claude.ai/code) when working in this repository.
 
 ## Project Overview
 
-Static marketing landing page for **Deglem**, an AI calorie-tracking mobile app (the app lives in the sibling repo `../calorie-tracker-ai`). The page sells the app and drives downloads to the App Store and Google Play. Bilingual: English (default) and Mongolian. Built to ship near-zero JavaScript and to let real screenshots / store URLs / privacy copy drop in later with **zero code change**.
+Static marketing landing page for **Deglem**, an AI calorie-tracking mobile app (the app lives in the sibling repo `../calorie-tracker-ai`). The page sells the app and drives downloads to the App Store and Google Play. Bilingual: Mongolian (default) and English. Built to ship near-zero JavaScript and to let real screenshots / store URLs / privacy copy drop in later with **zero code change**.
 
 This is a separate project from the app — it shares no code, only the brand (palette, logo, Roboto font).
 
@@ -16,7 +16,7 @@ This is a separate project from the app — it shares no code, only the brand (p
 |-------|--------|
 | Framework | **Astro** (static output, near-zero JS) |
 | Styling | **Tailwind CSS v4** — CSS-first, configured in `src/styles/global.css` via `@theme` (there is **no** `tailwind.config` file) |
-| i18n | Astro built-in i18n routing — `/` = EN (default), `/mn/` = Mongolian; `prefixDefaultLocale: false` |
+| i18n | Astro built-in i18n routing — `/` = MN (default), `/en/` = English; `prefixDefaultLocale: false`. Legacy `/mn/*` URLs forward via static stubs in `src/pages/mn/[...slug].astro` |
 | Fonts | **Roboto** via `@fontsource/roboto` (400 / 500 / 700) |
 | Hosting | **Vercel** (`@astrojs/vercel` static adapter) |
 | Sitemap | `@astrojs/sitemap` |
@@ -37,7 +37,7 @@ See `DESIGN.md` for the full system. Key rules:
 
 ```
 src/
-  config.ts              ← APP_STORE_URL, PLAY_STORE_URL, CONTACT_EMAIL, SITE_NAME (swap store URLs here)
+  config.ts              ← APP_STORE_URL, PLAY_STORE_URL, CONTACT_EMAIL, FACEBOOK_URL, SITE_NAME, SITE_URL, GET_PATH
   styles/global.css      ← Tailwind v4 entry: @import "tailwindcss" + @theme tokens + Roboto imports + base body
   layouts/
     Base.astro           ← <html> shell: localized <title>/meta, OG tags, hreflang (en/mn/x-default); imports global.css; <slot/>
@@ -52,12 +52,12 @@ src/
     PhoneMockup.astro    ← charcoal phone frame around a screenshot (props: screenshot, alt, class, rotate)
     StoreBadges.astro    ← App Store + Google Play badge links (reads config URLs)
     DownloadCTA.astro    ← #download anchor section on charcoal + StoreBadges
-    Footer.astro         ← glyph + wordmark, privacy link, contact, LanguageToggle, copyright
+    Footer.astro         ← DownloadCTA (opt-out via showCta) + glyph + wordmark, privacy · terms · contact · Facebook links, copyright row (language toggle lives only in Nav)
   pages/
-    index.astro          ← EN landing (lang='en', path='/')
-    privacy.astro        ← EN privacy (lang='en', path='/privacy')
-    mn/index.astro       ← MN landing (lang='mn', path='/')
-    mn/privacy.astro     ← MN privacy (lang='mn', path='/privacy')
+    index.astro, privacy.astro, terms.astro, contact.astro ← MN pages (lang='mn', default locale)
+    en/*.astro           ← EN mirrors (lang='en')
+    get.astro, en/get.astro ← smart download link (GetPage.astro): iOS → App Store, Android → Play, else both badges; noindex
+    mn/[...slug].astro   ← legacy /mn/* forwarding stubs (noindex, excluded from sitemap)
   i18n/
     en.json, mn.json     ← copy dictionaries — must keep identical key sets
     utils.ts             ← useTranslations(lang) → t(key); localizedPath(path, lang); Lang type; languages map
@@ -71,6 +71,7 @@ public/
 scripts/
   make-placeholders.mjs  ← dependency-free Node PNG generator for placeholder screenshots
   make-og-image.mjs      ← dependency-free Node PNG generator for the placeholder og-image
+  make-qr.mjs            ← `pnpm gen:qr` → public/qr/get.svg encoding SITE_URL + GET_PATH (rerun when the domain changes)
 astro.config.mjs         ← site, output:'static', vercel adapter, sitemap integration, tailwind v4 vite plugin, i18n
 ```
 

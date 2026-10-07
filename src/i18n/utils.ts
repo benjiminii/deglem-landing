@@ -1,9 +1,9 @@
 import en from './en.json';
 import mn from './mn.json';
 
-export const languages = { en: 'English', mn: 'Монгол' } as const;
+export const languages = { mn: 'Монгол', en: 'English' } as const;
 export type Lang = keyof typeof languages;
-export const defaultLang: Lang = 'en';
+export const defaultLang: Lang = 'mn';
 
 const dictionaries: Record<Lang, Record<string, string>> = { en, mn };
 
@@ -15,10 +15,10 @@ export function useTranslations(lang: Lang) {
 }
 
 /** Map a path between locales with consistent trailing slashes.
- *  '/' <-> '/mn/', '/privacy' -> '/privacy/' <-> '/mn/privacy/'. */
+ *  MN is the default (unprefixed) locale: '/' <-> '/en/', '/privacy' -> '/privacy/' <-> '/en/privacy/'. */
 export function localizedPath(path: string, lang: Lang): string {
-  let clean = path.replace(/^\/mn(\/|$)/, '/');
+  let clean = path.replace(/^\/en(\/|$)/, '/');
   if (!clean.endsWith('/')) clean += '/';
-  if (lang === 'en') return clean;
-  return clean === '/' ? '/mn/' : `/mn${clean}`;
+  if (lang === defaultLang) return clean;
+  return clean === '/' ? `/${lang}/` : `/${lang}${clean}`;
 }

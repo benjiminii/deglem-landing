@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "gen:store": "node store-assets/source/generate.mjs"
+    "gen:store": "node store-assets/source/generate.mjs",
+    "gen:qr": "node scripts/make-qr.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "playwright": "^1.60.0",
+    "qrcode": "^1.5.4",
     "typescript": "^6.0.3"
   }
 }

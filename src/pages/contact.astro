@@ -3,9 +3,9 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { useTranslations } from '../i18n/utils';
-import { CONTACT_EMAIL } from '../config';
+import { CONTACT_EMAIL, FACEBOOK_URL } from '../config';
 
-const lang = 'en';
+const lang = 'mn';
 const path = '/contact';
 const t = useTranslations(lang);
 ---
@@ -27,6 +27,16 @@ const t = useTranslations(lang);
       <div class="rounded-xl border border-cream-border p-6">
         <h2 class="font-semibold text-charcoal">{t('contact.support.label')}</h2>
         <p class="mt-2 text-sm leading-relaxed text-muted">{t('contact.support.desc')}</p>
+      </div>
+      <div class="rounded-xl border border-cream-border p-6">
+        <h2 class="font-semibold text-charcoal">{t('contact.facebook.label')}</h2>
+        <a
+          href={FACEBOOK_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-1 inline-block text-charcoal underline transition-opacity hover:opacity-80"
+        >{t('contact.facebook.link')}</a>
+        <p class="mt-2 text-sm leading-relaxed text-muted">{t('contact.facebook.desc')}</p>
       </div>
     </div>
   </main>

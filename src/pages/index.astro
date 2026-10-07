@@ -7,11 +7,11 @@ import Features from '../components/Features.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import WhyDeglem from '../components/WhyDeglem.astro';
 import ScreenshotGallery from '../components/ScreenshotGallery.astro';
-import SocialProof from '../components/SocialProof.astro';
+// import SocialProof from '../components/SocialProof.astro'; // re-enable once we have real reviews
 import Faq from '../components/Faq.astro';
 import Footer from '../components/Footer.astro';
 
-const lang = 'en';
+const lang = 'mn';
 const path = '/';
 ---
 
@@ -24,7 +24,7 @@ const path = '/';
     <HowItWorks lang={lang} />
     <WhyDeglem lang={lang} />
     <ScreenshotGallery lang={lang} />
-    <SocialProof lang={lang} />
+    {/* <SocialProof lang={lang} /> */}
     <Faq lang={lang} />
   </main>
   <Footer lang={lang} path={path} />

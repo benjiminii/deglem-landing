@@ -1,12 +1,12 @@
 ---
-import { useTranslations, type Lang } from '../i18n/utils';
+import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
 import LanguageToggle from './LanguageToggle.astro';
 
 interface Props { lang: Lang; path: string }
 const { lang, path } = Astro.props;
 const t = useTranslations(lang);
 
-const homeHref = lang === 'en' ? '/' : '/mn/';
+const homeHref = localizedPath('/', lang);
 // On the home page, scroll to the CTA; on other pages, jump to home then the CTA.
 const downloadHref = path === '/' ? '#download' : `${homeHref}#download`;
 ---

@@ -1,0 +1,25 @@
+---
+// Mongolian used to live under /mn/ before it became the default locale.
+// Static forwarding stubs keep old links working with or without a trailing slash
+// (Astro `redirects` on Vercel only match the exact no-slash form).
+export function getStaticPaths() {
+  return [undefined, 'privacy', 'terms', 'contact'].map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const target = slug ? `/${slug}/` : '/';
+---
+
+<!doctype html>
+<html lang="mn">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={target} />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <title>Deglem</title>
+  </head>
+  <body>
+    <a href={target}>Deglem</a>
+  </body>
+</html>

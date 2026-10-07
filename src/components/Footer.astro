@@ -1,11 +1,11 @@
 ---
 import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
-import { SITE_NAME } from '../config';
-import LanguageToggle from './LanguageToggle.astro';
+import { SITE_NAME, FACEBOOK_URL } from '../config';
 import DownloadCTA from './DownloadCTA.astro';
 
-interface Props { lang: Lang; path: string }
-const { lang, path } = Astro.props;
+interface Props { lang: Lang; path: string; showCta?: boolean }
+// `path` is unused now that the language toggle lives only in the sticky Nav; kept so pages pass the same props everywhere.
+const { lang, showCta = true } = Astro.props;
 const t = useTranslations(lang);
 const privacyHref = localizedPath('/privacy', lang);
 const termsHref = localizedPath('/terms', lang);
@@ -13,21 +13,21 @@ const contactHref = localizedPath('/contact', lang);
 const year = new Date().getFullYear();
 ---
 
-<DownloadCTA lang={lang} />
-<footer class="border-t border-cream-border bg-cream py-10">
-  <div class="mx-auto flex max-w-5xl flex-col items-center gap-4 px-5 text-sm text-muted sm:flex-row sm:justify-between">
-    <div class="flex items-center gap-4">
+{showCta && <DownloadCTA lang={lang} />}
+<footer class="border-t border-cream-border bg-cream py-10 text-sm text-muted">
+  <div class="mx-auto max-w-5xl px-5">
+    <div class="flex flex-col items-center gap-5 sm:flex-row sm:justify-between">
       <span class="flex items-center gap-2 font-semibold text-charcoal">
         <img src="/logo/deglem-glyph-dark.png" alt="" width="20" height="20" class="h-5 w-5" />
         {SITE_NAME}
       </span>
-      <a href={privacyHref} class="transition-opacity hover:opacity-80">{t('footer.privacy')}</a>
-      <a href={termsHref} class="transition-opacity hover:opacity-80">{t('footer.terms')}</a>
-      <a href={contactHref} class="transition-opacity hover:opacity-80">{t('footer.contact')}</a>
+      <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 whitespace-nowrap">
+        <a href={privacyHref} class="transition-opacity hover:opacity-80">{t('footer.privacy')}</a>
+        <a href={termsHref} class="transition-opacity hover:opacity-80">{t('footer.terms')}</a>
+        <a href={contactHref} class="transition-opacity hover:opacity-80">{t('footer.contact')}</a>
+        <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" class="transition-opacity hover:opacity-80">{t('footer.facebook')}</a>
+      </nav>
     </div>
-    <div class="flex items-center gap-4">
-      <LanguageToggle lang={lang} path={path} />
-      <span>© {year} {SITE_NAME}. {t('footer.rights')}</span>
-    </div>
+    <p class="mt-6 border-t border-cream-border pt-6 text-center text-xs sm:text-left">© {year} {SITE_NAME}. {t('footer.rights')}</p>
   </div>
 </footer>

@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import StoreBadges from './StoreBadges.astro';
+import { useTranslations, type Lang } from '../i18n/utils';
+import { APP_STORE_URL, PLAY_STORE_URL, GET_PATH } from '../config';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Base lang={lang} path={GET_PATH} title={`${t('get.title')} — Deglem`} noindex>
+  <!-- Phones go straight to their store; desktop and anything unrecognised stays and sees both badges. -->
+  <script is:inline define:vars={{ ios: APP_STORE_URL, android: PLAY_STORE_URL }}>
+    const ua = navigator.userAgent;
+    // iPadOS 13+ reports a Mac user agent — tell it apart by touch support.
+    const isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    const target = isIOS ? ios : /Android/i.test(ua) ? android : null;
+    if (target) {
+      document.documentElement.dataset.redirecting = '';
+      location.replace(target);
+    }
+  </script>
+  <Nav lang={lang} path={GET_PATH} />
+  <main class="mx-auto max-w-3xl px-5 py-24 text-center">
+    <h1 class="text-3xl font-bold text-charcoal">{t('get.title')}</h1>
+    <p class="mt-4 text-muted get-choose">{t('get.subtitle')}</p>
+    <p class="mt-4 text-muted get-redirecting">{t('get.redirecting')}</p>
+    <StoreBadges class="mt-8 justify-center" />
+  </main>
+  <Footer lang={lang} path={GET_PATH} showCta={false} />
+</Base>
+
+<style>
+  .get-redirecting { display: none; }
+  :global(html[data-redirecting]) .get-redirecting { display: block; }
+  :global(html[data-redirecting]) .get-choose { display: none; }
+</style>
